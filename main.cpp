@@ -1,35 +1,50 @@
-#include <iostream>
-#include <vector>
-#include <string>
+#include "Contact.h"
 
-using namespace std;
-
-// 1. [ Sarah ] - Class Contact Structure
-class Contact {
-    // Write properties and constructor here
-};
-
-class ContactsManager {
-private:
-    vector<Contact> contacts;
-
-public:
-    // 2. [ Sama ] - Implementation of Add
-    void addContact();
-
-    // 3. [ Amira ] - Implementation of Search
-    void searchContacts();
-
-    // 4. [ Salma 1 ] - Implementation of Update
-    void updateContact();
-
-    // 5. [ Salma 2 ] - Implementation of Delete & Count
-    void deleteContact();
-    void showCount();
-};
-
-// 6. [ Salma 3 ] - Main Menu & User Interface
+// ==========================================
+// 6. [ Salma 3 ] - UI/UX Developer
+// ==========================================
 int main() {
-    // Write the menu loop here
+    ContactsManager myManager;
+    int choice;
+    string searchName;
+
+    while (true) {
+        cout << "\n--- PHONE CONTACTS SYSTEM ---" << endl;
+        cout << "1. Add New Contact" << endl;
+        cout << "2. Show All Contacts" << endl;
+        cout << "3. Search for Contact" << endl;
+        cout << "4. Update Contact" << endl;
+        cout << "5. Delete Contact" << endl;
+        cout << "6. System Statistics" << endl;
+        cout << "0. Exit" << endl;
+        cout << "-----------------------------" << endl;
+        cout << "Choose an option: ";
+        cin >> choice;
+
+        if (choice == 1) {
+            string n, p, e, a;
+            cout << "Enter Name: "; cin >> n;
+            cout << "Enter Phone: "; cin >> p;
+            myManager.addContact(Contact(n, p));
+        } 
+        else if (choice == 2) {
+            myManager.displayAll();
+        }
+        else if (choice == 3) {
+            cout << "Enter name to search: "; cin >> searchName;
+            myManager.searchContact(searchName);
+        }
+        else if (choice == 6) {
+            myManager.showStats();
+        }
+        else if (choice == 0) {
+            cout << "Closing system..." << endl;
+            break;
+        }
+        else {
+            cout << "Invalid option!" << endl;
+        }
+    }
+
     return 0;
 }
